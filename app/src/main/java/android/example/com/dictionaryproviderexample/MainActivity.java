@@ -47,7 +47,6 @@ public class MainActivity extends ActionBarActivity {
         // Surround the cursor in a try statement so that the finally block will eventually execute
         try {
             dictTextView.setText("The UserDictionary contains ");
-            // -- YOUR CODE BELOW HERE -- //
 
             // Get the index of the column containing the actual words, using
             // UserDictionary.Words.WORD, which is the header of the word column.
