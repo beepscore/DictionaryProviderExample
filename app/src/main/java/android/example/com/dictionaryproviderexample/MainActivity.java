@@ -50,12 +50,20 @@ public class MainActivity extends ActionBarActivity {
                     + String.valueOf(cursor.getCount())
                     + " words");
 
+            final String SEPARATOR = " - ";
+
+            dictTextView.append("\n" + "COLUMNS "
+                    + UserDictionary.Words._ID
+                    + SEPARATOR
+                    + UserDictionary.Words.FREQUENCY
+                    + SEPARATOR
+                    + UserDictionary.Words.WORD);
+
             // Get the index of the column containing the actual words, using
             // UserDictionary.Words.WORD, which is the header of the word column.
             int idColumn = cursor.getColumnIndex(UserDictionary.Words._ID);
             int frequencyColumn = cursor.getColumnIndex(UserDictionary.Words.FREQUENCY);
             int wordColumn = cursor.getColumnIndex(UserDictionary.Words.WORD);
-            final String SEPARATOR = " - ";
 
             // Iterates through all returned rows in the cursor.
             while (cursor.moveToNext()) {
