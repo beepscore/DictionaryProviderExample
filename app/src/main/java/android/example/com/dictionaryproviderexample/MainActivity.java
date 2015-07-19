@@ -46,18 +46,29 @@ public class MainActivity extends ActionBarActivity {
         
         // Surround the cursor in a try statement so that the finally block will eventually execute
         try {
-            dictTextView.setText("The UserDictionary contains ");
+            dictTextView.setText("The UserDictionary contains "
+                    + String.valueOf(cursor.getCount())
+                    + " words");
 
             // Get the index of the column containing the actual words, using
             // UserDictionary.Words.WORD, which is the header of the word column.
+            int idColumn = cursor.getColumnIndex(UserDictionary.Words._ID);
+            int frequencyColumn = cursor.getColumnIndex(UserDictionary.Words.FREQUENCY);
             int wordColumn = cursor.getColumnIndex(UserDictionary.Words.WORD);
+            final String SEPARATOR = " - ";
 
             // Iterates through all returned rows in the cursor.
             while (cursor.moveToNext()) {
                 // Use that index to extract the String value of the word
                 // at the current row the cursor is on.
+                int wordId = cursor.getInt(idColumn);
+                int wordFrequency = cursor.getInt(frequencyColumn);
                 String word = cursor.getString(wordColumn);
-                dictTextView.append(("\n" + word));
+                dictTextView.append(("\n" + String.valueOf(wordId)
+                        + SEPARATOR
+                        + String.valueOf(wordFrequency)
+                        + SEPARATOR
+                        + word));
             }
         } finally {
             // Always close your cursor to avoid memory leaks
