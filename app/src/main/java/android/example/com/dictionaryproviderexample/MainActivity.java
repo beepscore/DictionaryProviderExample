@@ -47,14 +47,18 @@ public class MainActivity extends ActionBarActivity {
         // Get a Cursor containing all of the rows in the Words table
         cursor = resolver.query(UserDictionary.Words.CONTENT_URI, null, null, null, null);
 
-        final String[] FROM_COLUMNS = {UserDictionary.Words.WORD, Words.FREQUENCY};
+        final String[] FROM_COLUMNS = {UserDictionary.Words.WORD,
+                UserDictionary.Words.FREQUENCY};
         final int[] TO_VIEWS = {android.R.id.text1, android.R.id.text2};
 
-        dictListView.setAdapter(new SimpleCursorAdapter(this,
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
                 android.R.layout.two_line_list_item,
                 cursor,
                 FROM_COLUMNS,
-                TO_VIEWS));
+                TO_VIEWS,
+                0);
+
+        dictListView.setAdapter(adapter);
     }
 
     @Override
